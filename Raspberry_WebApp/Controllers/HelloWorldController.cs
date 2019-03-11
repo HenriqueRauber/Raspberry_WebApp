@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Raspberry_WebApp.Python;
 
 namespace Raspberry_WebApp.Controllers
 {
@@ -35,5 +36,19 @@ namespace Raspberry_WebApp.Controllers
         ////{
         ////    return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
         ////}
+
+        // GET: /HelloWorld/HelloWorld/ 
+        public string HelloWorld()
+        {
+            return PythonMethods.GetInstancia().HelloWorld;
+        }
+
+        // GET: /HelloWorld/PrintHello/ 
+        public string PrintHello()
+        { 
+            PythonMethods.GetInstancia().PrintHello();
+            return "Ok";
+        }
+
     }
 }
