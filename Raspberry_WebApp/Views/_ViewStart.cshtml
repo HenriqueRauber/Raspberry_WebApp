@@ -1,3 +1,14 @@
-﻿@{
-    Layout = "_Layout";
+﻿@{ 
+
+    string userAgent = ((Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestHeaders)this.Context.Request.Headers).HeaderUserAgent[0].ToLower();
+    string[] mobileDevices = new string[] { "iphone", "ppc", "windows ce", "blackberry", "opera mini", "mobile", "palm", "portable", "opera mobi" };
+
+    if (mobileDevices.Any(x => userAgent.Contains(x)))
+    {
+        Layout = "_LayoutX";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }

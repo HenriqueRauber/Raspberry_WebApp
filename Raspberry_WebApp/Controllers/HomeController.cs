@@ -26,6 +26,10 @@ namespace Raspberry_WebApp.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
+            ViewBag.Layout = string.Empty;
+
+            ViewBag.Layout = "_LayoutX";
+
             return View();
         }
 

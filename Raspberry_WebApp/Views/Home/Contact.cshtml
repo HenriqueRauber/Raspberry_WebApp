@@ -1,4 +1,8 @@
 ﻿@{
+    if (!string.IsNullOrWhiteSpace(ViewBag.Layout))
+    {
+        Layout = ViewBag.Layout.ToString();
+    }
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"]</h2>
