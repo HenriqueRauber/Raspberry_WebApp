@@ -55,11 +55,9 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+
+        <button type="button" class="btn btn-info" id="btPrintHello">PrintHello</button>
+
     </div>
     <div class="col-md-3">
         <h2>How to</h2>
@@ -92,3 +90,33 @@
         </ul>
     </div>
 </div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btPrintHello').click(function () {
+                $.ajax({
+                    url: "@(Url.Action("PrintHello", "HelloWorld"))",
+                    type: "POST",
+                    data: { id: 50 },
+                    cache: false,
+                    async: true,
+                    //success: function (data) {
+                    //    alert(data);
+                    //}
+                });
+            });
+            $('#btHelloWorld').click(function () {
+                $.ajax({
+                    url: "@(Url.Action("HelloWorld", "HelloWorld"))",
+                    type: "POST",
+                    data: { id: 50 },
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

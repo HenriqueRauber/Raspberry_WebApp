@@ -5,3 +5,37 @@
 <h2>Index</h2>
 
 <p>Hello from our View Template!</p>
+
+<button type="button" class="btn btn-info" id="btPrintHello">PrintHello</button>
+<button type="button" class="btn btn-success" id="btHelloWorld">HelloWorld</button>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btPrintHello').click(function () {
+                $.ajax({
+                    url: "@(Url.Action("PrintHello", "HelloWorld"))",
+                    type: "POST",
+                    data: { id: 50 },
+                    cache: false,
+                    async: true,
+                    //success: function (data) {
+                    //    alert(data);
+                    //}
+                });
+            });
+            $('#btHelloWorld').click(function () {
+                $.ajax({
+                    url: "@(Url.Action("HelloWorld", "HelloWorld"))",
+                    type: "POST",
+                    data: { id: 50 },
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

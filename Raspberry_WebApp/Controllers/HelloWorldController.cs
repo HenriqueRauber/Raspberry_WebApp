@@ -6,48 +6,56 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Raspberry_WebApp.Python;
 
+//using MadeInTheUSB;
+//using MadeInTheUSB.GPIO;
+using System.Diagnostics;
+
 namespace Raspberry_WebApp.Controllers
 {
     public class HelloWorldController : Controller
-    {
-        // 
-        // GET: /HelloWorld/
+    { 
         //https://localhost:xxx/helloWorld
         //https://localhost:xxx/helloWorld/Index
+        //GET: /HelloWorld/
         public IActionResult Index()
         {
             return View();
-        }
-        //public string Index()
-        //{
-        //    return "This is my default action...";
-        //}
+        } 
 
-        // GET: /HelloWorld/Welcome/ 
-        // Requires using System.Text.Encodings.Web;
-        //https://localhost:xxx/helloWorld/Welcome?name=Rick&ID=4
-        //https://localhost:xxx/HelloWorld/Welcome/3?name=Rick
+        //GET: /HelloWorld/Welcome/  
         public string Welcome(string name, int ID = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
-        //https://localhost:xxx/helloWorld/Welcome?name=Rick&numtimes=4
-        ////public string Welcome(string name, int numTimes = 1)
-        ////{
-        ////    return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
-        ////}
 
-        // GET: /HelloWorld/HelloWorld/ 
-        public string HelloWorld()
+        // Ajax POST: /HelloWorld/HelloWorld/
+        [HttpPost]
+        public ActionResult HelloWorld()
         {
-            return PythonMethods.GetInstancia().HelloWorld;
+            try
+            { 
+                return Content(PythonMethods.GetInstancia().HelloWorld);
+            }
+            catch (Exception e)
+            {
+                return Content($"Ocorreu um erro: {e.ToString()}");
+            }
         }
+         
+        // Ajax POST: /HelloWorld/PrintHello/
+        [HttpPost]
+        public ActionResult PrintHello()
+        {
+            try
+            {
+                PythonMethods.GetInstancia().PrintHello(); 
+            }
+            catch(Exception e)
+            {
+                return Content($"Ocorreu um erro: {e.ToString()}");
+            }
 
-        // GET: /HelloWorld/PrintHello/ 
-        public string PrintHello()
-        { 
-            PythonMethods.GetInstancia().PrintHello();
-            return "Ok";
+            return Content("Ok");
         }
 
     }
