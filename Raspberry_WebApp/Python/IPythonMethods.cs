@@ -7,7 +7,8 @@ namespace Raspberry_WebApp.Python
 {
     public interface IPythonMethods
     {
-        string HelloWorld { get; } 
+        string HelloWorld();
         void PrintHello();
+        string Dir();
     }
 }

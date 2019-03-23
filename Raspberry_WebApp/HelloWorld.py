@@ -1,7 +1,7 @@
 import sys 
 #import RPi.GPIO as gpio
 #import time
-    
+
 def HelloWorld(): 
     #gpio.setmode(gpio.BCM)
     #gpio.setup(14, gpio.OUT)
@@ -10,10 +10,7 @@ def HelloWorld():
     #    time.sleep(.300)
     #    gpio.output(14, gpio.LOW)
     #    time.sleep(.500)
-    #gpio.cleanup()
-	frequency = 2500  # Set Frequency To 2500 Hertz
-	duration = 1000  # Set Duration To 1000 ms == 1 second
-	winsound.Beep(frequency, duration)
+    #gpio.cleanup() 
     return 'funcionou'
 
 print(HelloWorld())

@@ -27,6 +27,12 @@ namespace Raspberry_WebApp.Controllers
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
+        
+        //GET: /HelloWorld/Welcome/  
+        public ActionResult Dir(string name, int ID = 1)
+        {
+            return Content(PythonMethods.GetInstancia().Dir());
+        }
 
         // Ajax POST: /HelloWorld/HelloWorld/
         [HttpPost]
@@ -34,7 +40,7 @@ namespace Raspberry_WebApp.Controllers
         {
             try
             { 
-                return Content(PythonMethods.GetInstancia().HelloWorld);
+                return Content(PythonMethods.GetInstancia().HelloWorld());
             }
             catch (Exception e)
             {
